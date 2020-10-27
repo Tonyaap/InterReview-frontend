@@ -1,0 +1,27 @@
+.topnav {
+  list-style-type: none;
+
+  background-color: rgb(38, 53, 154);
+  overflow: hidden;
+  color: rgb(172, 50, 50);
+}
+
+.topnav li {
+  float: left;
+  color: #781f1f;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  margin: 0 auto;
+}
+
+.topnav li:hover {
+  background-color: rgb(201, 58, 53);
+  color: black;
+}
+
+.topnav li:active {
+  background-color: #ffffff;
+  color: white;
+}
