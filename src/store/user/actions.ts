@@ -2,7 +2,6 @@
 import axios from "axios";
 // import { selectToken } from "./selectors";
 
-
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const TOKEN_STILL_VALID = "TOKEN_STILL_VALID";
 export const LOG_OUT = "LOG_OUT";
@@ -14,7 +13,6 @@ const loginSuccess = (userWithToken: any) => {
   };
 };
 
-
 export const login = (email: string, password: string) => {
   return async (dispatch: any, getState: any) => {
     try {
@@ -22,15 +20,51 @@ export const login = (email: string, password: string) => {
         email,
         password,
       });
-      console.log("res.data" ,response.data)
-      dispatch(loginSuccess(response.data));
-    } catch (error) {
-    
-    }
+      console.log("res.data", response.data);
+    } catch (error) {}
   };
 };
 
 export const logOut = () => ({ type: LOG_OUT });
+
+export const sendForm = (
+  userId: string,
+  name: string,
+  nervousScore: number,
+  rapportScore: number,
+  technicalScore: number,
+  preparationScore: number,
+  bodylanguageScore: number,
+  questions: any
+) => {
+  console.log("userId", userId);
+  console.log("name", name);
+  console.log("nervousScore", nervousScore);
+  console.log("rapportScore", rapportScore);
+  console.log("technicalScore", technicalScore);
+  console.log("preparationScore", preparationScore);
+  console.log("bodylanguageScore", bodylanguageScore);
+  console.log("questions", questions);
+
+  return async (dispatch: any, getState: any) => {
+    try {
+      const response = await axios.post(
+        `http://localhost:8080/users/interview`,
+        {
+          userId,
+          name,
+          nervousScore,
+          rapportScore,
+          technicalScore,
+          preparationScore,
+          bodylanguageScore,
+          questions,
+        }
+      );
+      console.log("res.data", response.data);
+    } catch (error) {}
+  };
+};
 
 // export const signUp = (name, email, password) => {
 //   return async (dispatch, getState) => {
@@ -57,8 +91,6 @@ export const logOut = () => ({ type: LOG_OUT });
 //     }
 //   };
 // };
-
-
 
 // export const getUserWithStoredToken = () => {
 //   return async (dispatch, getState) => {
@@ -112,7 +144,6 @@ export const logOut = () => ({ type: LOG_OUT });
 //     payload: newComposition,
 //   };
 // }
-
 
 // import axios from "axios";
 // const loginSuccess = (userWithToken: any) => {
