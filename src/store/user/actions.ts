@@ -32,31 +32,30 @@ export const login = (email: string, password: string) => {
 
 export const logOut = () => ({ type: LOG_OUT });
 
-// export const signUp = (name, email, password) => {
-//   return async (dispatch, getState) => {
-//     dispatch(appLoading());
-//     try {
-//       const response = await axios.post(`${apiUrl}/auth/signup`, {
-//         name,
-//         email,
-//         password,
-//       });
+export const signUp = (name: string, email: string, password: string) => {
+  return async (dispatch: any, getState: any) => {
+    try {
+      const response = await axios.post(`http://localhost:8080/auth/signup`, {
+        name,
+        email,
+        password,
+      });
 
-//       console.log(response);
+      console.log(response);
 
-//       // dispatch(loginSuccess(response.data));
-//       dispatch(showMessageWithTimeout("success", true, "account created"));
-//       dispatch(appDoneLoading());
-//     } catch (error) {
-//       if (error.response) {
-//         dispatch(setMessage("danger", true, error.response.data.message));
-//       } else {
-//         dispatch(setMessage("danger", true, error.message));
-//       }
-//       dispatch(appDoneLoading());
-//     }
-//   };
-// };
+      // dispatch(loginSuccess(response.data));
+     
+    
+    } catch (error) {
+      if (error.response) {
+       
+      } else {
+       
+      }
+   
+    }
+  };
+};
 
 
 
