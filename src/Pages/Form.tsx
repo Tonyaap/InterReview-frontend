@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -9,9 +9,60 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { Slider } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import { sendForm } from "../store/user/actions";
 
 export default function Form() {
+  const dispatch = useDispatch();
   const classes = useStyles();
+  const [answer1, setAwnser1] = useState("");
+  const [answer2, setAwnser2] = useState("");
+  const [answer3, setAwnser3] = useState("");
+  const [answer4, setAwnser4] = useState("");
+  const [answer5, setAwnser5] = useState("");
+  const [answer6, setAwnser6] = useState("");
+
+  const [nervousScore, setNervousScore] = useState(0);
+  const [rapportScore, setRapportScore] = useState(0);
+  const [technicalScore, setTechnicalScore] = useState(0);
+  const [preparationScore, setPreparationScore] = useState(0);
+  const [bodyLanguageScore, setBodyLanguageScore] = useState(0);
+
+  const [answers, setAwnsers] = useState([
+    { Question: "Company Name", Answer: `${answer1}` },
+    {
+      Question: " What was the most difficult question they asked?",
+      Answer: `${answer2}`,
+    },
+    { Question: "What went well?", Answer: `${answer3}` },
+    {
+      Question: "What did you get across positively about yourself?",
+      Answer: `${answer4}`,
+    },
+    { Question: "What could have gone better?", Answer: `${answer5}` },
+    {
+      Question:
+        "What can i do differently next time to improve my performance?",
+      Answer: `${answer6}`,
+    },
+  ]);
+  console.log(answer1);
+
+  function clickHandler(e: any) {
+    e.preventDefault();
+    dispatch(
+      sendForm(
+        "d0309e70-1859-11eb-adc1-0242ac120002",
+        answer1,
+        nervousScore,
+        rapportScore,
+        technicalScore,
+        preparationScore,
+        bodyLanguageScore,
+        answers
+      )
+    );
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -22,9 +73,13 @@ export default function Form() {
         </Typography>
 
         <Typography id="discrete-slider-small-steps" gutterBottom>
-          How nervous where you?{" "}
+          How nervous where you?
         </Typography>
         <Slider
+          onChange={(event: any, value: any) => {
+            setNervousScore(value);
+          }}
+          value={nervousScore}
           defaultValue={0}
           aria-labelledby="discrete-slider-small-steps"
           step={1}
@@ -38,6 +93,10 @@ export default function Form() {
           did you build rapport?{" "}
         </Typography>
         <Slider
+          onChange={(event: any, value: any) => {
+            setRapportScore(value);
+          }}
+          value={rapportScore}
           defaultValue={0}
           aria-labelledby="discrete-slider-small-steps"
           step={1}
@@ -50,6 +109,10 @@ export default function Form() {
           How did you do on technical questions?{" "}
         </Typography>
         <Slider
+          onChange={(event: any, value: any) => {
+            setTechnicalScore(value);
+          }}
+          value={technicalScore}
           defaultValue={0}
           aria-labelledby="discrete-slider-small-steps"
           step={1}
@@ -62,6 +125,10 @@ export default function Form() {
           How prepared were you?{" "}
         </Typography>
         <Slider
+          onChange={(event: any, value: any) => {
+            setPreparationScore(value);
+          }}
+          value={preparationScore}
           defaultValue={0}
           aria-labelledby="discrete-slider-small-steps"
           step={1}
@@ -74,6 +141,10 @@ export default function Form() {
           How was your Body language{" "}
         </Typography>
         <Slider
+          onChange={(event: any, value: any) => {
+            setBodyLanguageScore(value);
+          }}
+          value={bodyLanguageScore}
           defaultValue={0}
           aria-labelledby="discrete-slider-small-steps"
           step={1}
@@ -88,6 +159,10 @@ export default function Form() {
             company name?{" "}
           </Typography>
           <TextField
+            value={answer1}
+            onChange={(event: any) => {
+              setAwnser1(event.target.value);
+            }}
             variant="outlined"
             margin="normal"
             required
@@ -98,35 +173,13 @@ export default function Form() {
             autoFocus
           />
           <Typography id="discrete-slider-small-steps" gutterBottom>
-            Why did I apply for this job{" "}
+            What was the most difficult question they asked?{" "}
           </Typography>
           <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="question"
-            label="question"
-            name="question"
-            autoFocus
-          />
-          <Typography id="discrete-slider-small-steps" gutterBottom>
-            what was your first impression of the company?
-          </Typography>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="question"
-            label="question"
-            name="question"
-            autoFocus
-          />{" "}
-          <Typography id="discrete-slider-small-steps" gutterBottom>
-            What was the most difficult questions they asked?{" "}
-          </Typography>
-          <TextField
+            value={answer2}
+            onChange={(event: any) => {
+              setAwnser2(event.target.value);
+            }}
             variant="outlined"
             margin="normal"
             required
@@ -140,19 +193,10 @@ export default function Form() {
             What went well?{" "}
           </Typography>
           <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="question"
-            label="question"
-            name="question"
-            autoFocus
-          />{" "}
-          <Typography id="discrete-slider-small-steps" gutterBottom>
-            What were you really happy with?{" "}
-          </Typography>
-          <TextField
+            value={answer3}
+            onChange={(event: any) => {
+              setAwnser3(event.target.value);
+            }}
             variant="outlined"
             margin="normal"
             required
@@ -166,19 +210,10 @@ export default function Form() {
             What did you get across positively about yourself?{" "}
           </Typography>
           <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="question"
-            label="question"
-            name="question"
-            autoFocus
-          />{" "}
-          <Typography id="discrete-slider-small-steps" gutterBottom>
-            What questions did you answer really well?{" "}
-          </Typography>
-          <TextField
+            value={answer4}
+            onChange={(event: any) => {
+              setAwnser4(event.target.value);
+            }}
             variant="outlined"
             margin="normal"
             required
@@ -192,19 +227,10 @@ export default function Form() {
             What could have gone better?{" "}
           </Typography>
           <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="question"
-            label="question"
-            name="question"
-            autoFocus
-          />{" "}
-          <Typography id="discrete-slider-small-steps" gutterBottom>
-            What were you not happy with?{" "}
-          </Typography>
-          <TextField
+            value={answer5}
+            onChange={(event: any) => {
+              setAwnser5(event.target.value);
+            }}
             variant="outlined"
             margin="normal"
             required
@@ -218,19 +244,10 @@ export default function Form() {
             What can i do differently next time to improve my performance?{" "}
           </Typography>
           <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="question"
-            label="question"
-            name="question"
-            autoFocus
-          />
-          <Typography id="discrete-slider-small-steps" gutterBottom>
-            What actionable steps can i take?
-          </Typography>
-          <TextField
+            value={answer6}
+            onChange={(event: any) => {
+              setAwnser6(event.target.value);
+            }}
             variant="outlined"
             margin="normal"
             required
@@ -241,6 +258,7 @@ export default function Form() {
             autoFocus
           />
           <Button
+            onClick={(e) => clickHandler(e)}
             type="submit"
             fullWidth
             variant="contained"
@@ -255,7 +273,6 @@ export default function Form() {
     </Container>
   );
 }
-
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
