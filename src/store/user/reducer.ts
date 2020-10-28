@@ -1,7 +1,7 @@
-import {LOGIN_SUCCESS, LOG_OUT} from "../user/actions"
+import {LOGIN_SUCCESS, LOG_OUT, TOKEN_STILL_VALID} from "../user/actions"
 
 const initialState = {
-  token: localStorage.getItem("token"),
+  token: null,
   user: null  }
 
 
@@ -16,11 +16,15 @@ export default (state = initialState, action: any) => {
       localStorage.removeItem("token");
       return { ...initialState, token: null };    
 
+      case TOKEN_STILL_VALID:
+        return {
+          user: action.payload.user,
+          token: localStorage.token,
+        }
 
     default:
       return state;
   }
-  
 };
 
       
