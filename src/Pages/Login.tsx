@@ -1,4 +1,5 @@
-import React from "react";
+import React,{ useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -11,9 +12,25 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import {login} from "../store/user/actions"
 
 export default function SignIn() {
   const classes = useStyles();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+    const dispatch = useDispatch();
+
+  console.log("Email Password", email, password)
+
+ function submitForm(e: any) {
+   console.log("Form Submitted")
+    e.preventDefault();
+
+    dispatch(login(email, password));
+
+    setEmail("");
+    setPassword("");
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -25,17 +42,22 @@ export default function SignIn() {
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
+            value={email}
+            onChange={(e) => setEmail(e.target.value) }
             variant="outlined"
             margin="normal"
             required
             fullWidth
             id="email"
+          
             label="Email Address"
             name="email"
             autoComplete="email"
             autoFocus
           />
           <TextField
+          value={password}
+          onChange={(e) => setPassword(e.target.value) }
             variant="outlined"
             margin="normal"
             required
@@ -49,6 +71,7 @@ export default function SignIn() {
 
           <Button
             type="submit"
+            onClick={submitForm}
             fullWidth
             variant="contained"
             color="primary"
