@@ -1,8 +1,13 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import "./NavBar.css";
+import {logOut} from "../../store/user/actions"
 
 export default function NavBar() {
+
+  const dispatch = useDispatch();
+
   return (
     <div className="topnav">
       <ul className="topnav">
@@ -31,6 +36,9 @@ export default function NavBar() {
             Login
           </NavLink>
         </li>
+          <li> 
+          <button onClick={() => dispatch(logOut())}> logout </button>
+           </li>
       </ul>
     </div>
   );

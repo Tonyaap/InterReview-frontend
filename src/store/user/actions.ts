@@ -1,6 +1,6 @@
 // import { apiUrl } from "../../config/constants";
 import axios from "axios";
-// import { selectToken } from "./selectors";
+import { selectToken } from "./selectors";
 
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const TOKEN_STILL_VALID = "TOKEN_STILL_VALID";
@@ -13,6 +13,7 @@ const loginSuccess = (userWithToken: any) => {
   };
 };
 
+
 export const login = (email: string, password: string) => {
   return async (dispatch: any, getState: any) => {
     try {
@@ -20,12 +21,36 @@ export const login = (email: string, password: string) => {
         email,
         password,
       });
-      console.log("res.data", response.data);
-    } catch (error) {}
-  };
+
+      dispatch(loginSuccess(response.data));
+    } catch (error) {
+    
+    }
+
 };
 
 export const logOut = () => ({ type: LOG_OUT });
+
+
+export const signUp = (name: string, email: string, password: string) => {
+  return async (dispatch: any, getState: any) => {
+    try {
+      const response = await axios.post(`http://localhost:8080/auth/signup`, {
+        name,
+        email,
+        password,
+      });
+
+      console.log(response);
+
+    
+    } catch (error) {
+      if (error.response) {       
+      } else {
+      }
+    }
+  };
+};
 
 export const sendForm = (
   userId: string,
@@ -96,21 +121,28 @@ export const sendForm = (
 //   return async (dispatch, getState) => {
 //     const token = selectToken(getState());
 
-//     if (token === null) return;
 
-//     dispatch(appLoading());
-//     try {
-//       const response = await axios.get(`${apiUrl}/auth/me`, {
-//         headers: { Authorization: `Bearer ${token}` },
-//       });
-//       dispatch(tokenStillValid(response.data));
-//       dispatch(appDoneLoading());
-//     } catch (error) {
-//       dispatch(logOut());
-//       dispatch(appDoneLoading());
-//     }
-//   };
-// };
+const tokenStillValid = (userWithoutToken: any) => ({
+  type: TOKEN_STILL_VALID,
+  payload: userWithoutToken,
+});
+
+export const getUserWithStoredToken = () => {
+  return async (dispatch: any, getState: any) => {
+    const token = selectToken(getState());
+    // console.log("WHAT IS localtoken?", localStorage.token)
+    if (localStorage.token === null) return;
+    try {
+      const response = await axios.get(`http://localhost:8080/auth/me`, {
+        headers: { Authorization: `Bearer ${localStorage.token}` },
+      });
+      console.log( "WHAT IS RES DATA?", response.data)
+      dispatch(tokenStillValid(response.data));
+    } catch (error) {
+      dispatch(logOut());
+    }
+  };
+};
 
 // export const createComposition = (userId, compositionName, composition) => {
 //   return async (dispatch, getState) => {
