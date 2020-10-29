@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
-import Home from "./Pages/Home";
+import Home from "./Pages/GraphPage";
 import Form from "./Pages/Form";
 import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
@@ -9,6 +9,8 @@ import NavBar from "./Components/NavBar/NavBar";
 import Interviews from "../src/Pages/Interviews";
 import { useDispatch } from "react-redux";
 import { getUserWithStoredToken } from "./store/user/actions";
+import GraphPage from "./Pages/GraphPage";
+import HomePage from "./Pages/HomePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,7 +30,8 @@ function App() {
         <Route path="/Signup" component={SignUp} />
         <Route path="/Login" component={Login} />
         <Route path="/Interviews" component={Interviews} />
-        <Route path="/" component={Home} />
+        <Route path="/Graph" component={GraphPage} />
+        <Route path="/" component={HomePage} />
       </Switch>
     </div>
   );

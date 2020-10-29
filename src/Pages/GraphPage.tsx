@@ -3,7 +3,7 @@ import { selectUser } from "../store/user/selectors";
 import { useSelector } from "react-redux";
 import { Line } from "react-chartjs-2";
 
-export default function Home() {
+export default function GraphPage() {
   const user = useSelector(selectUser);
   const [loading, setLoading] = useState(true);
 
