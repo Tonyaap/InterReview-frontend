@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { selectUser } from "../store/user/selectors";
 import { useSelector } from "react-redux";
-import { Line } from "react-chartjs-2";
+import { Bar, Line } from "react-chartjs-2";
 
 export default function GraphPage() {
   const user = useSelector(selectUser);
@@ -83,14 +83,74 @@ export default function GraphPage() {
 
         <div>
           <p> Number of interviews: {numberOfInterviews} </p>
-          <p> Average Scores: </p>
-          <li>Nervousness: {aNervous}</li>
-          <li>Rapport: {aRapport}</li>
-          <li>Technical: {aTechnical}</li>
-          <li>Preparation: {aPreparation}</li>
-          <li>Body Language: {aBodyLanguage}</li>
+     
         </div>
-        <div className="chart-container" style={{ height: 100, width: 1000 }}>
+
+        <div className="barchart" style={{ height: 100, width: 1000 }}>
+          <canvas id="chart"></canvas>
+          <Bar
+            data={{
+              labels: ["Average Scores"],
+              datasets: [
+                {
+                  label: "Nervous",
+                  data: [aNervous],
+                  backgroundColor: [
+                    "red",
+                  ],
+                  borderColor: "red",
+                  borderWidth: 10,
+                },
+                {
+                  label: "Rapport",
+                  data: [aRapport],
+                  backgroundColor: "black",
+                  borderWidth: 10,
+                  borderColor: "black",
+                },
+                {
+                  label: "Technical",
+                  data: [aTechnical],
+                  backgroundColor: "blue",
+                  borderWidth: 10,
+                  borderColor: "blue",
+                },
+                {
+                  label: "Preparation",
+                  data: [aPreparation],
+                  backgroundColor: "green",
+                  borderWidth: 10,
+                  borderColor: "green",
+                },
+                {
+                  label: "Body-Language",
+                  data: [aBodyLanguage],
+                  backgroundColor: "yellow",
+                  borderWidth: 10,
+                  borderColor: "yellow",
+                },
+              ],
+            }}
+            height={40}
+            width={80}
+            options={{
+              maintainAspectsRatio: false,
+              scales: {
+                yAxes: [
+                  {
+                    ticks: {
+                      beginAtZero: true,
+                    },
+                  },
+                ],
+              },
+            }}
+          />
+        </div> 
+
+        <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br>
+
+        <div className="linechart" style={{ height: 100, width: 1000 }}>
           <canvas id="chart"></canvas>
           <Line
             data={{
