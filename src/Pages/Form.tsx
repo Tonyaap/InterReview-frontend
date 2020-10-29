@@ -11,8 +11,10 @@ import Container from "@material-ui/core/Container";
 import { Slider } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { sendForm } from "../store/user/actions";
+import { selectUser } from "../store/user/selectors";
 
 export default function Form() {
+  const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const classes = useStyles();
   const [answer1, setAwnser1] = useState("");
@@ -52,7 +54,7 @@ export default function Form() {
     e.preventDefault();
     dispatch(
       sendForm(
-        "d0309e70-1859-11eb-adc1-0242ac120002",
+        user.user.id,
         answer1,
         nervousScore,
         rapportScore,
