@@ -13,7 +13,6 @@ const loginSuccess = (userWithToken: any) => {
   };
 };
 
-
 export const login = (email: string, password: string) => {
   return async (dispatch: any, getState: any) => {
     try {
@@ -25,7 +24,7 @@ export const login = (email: string, password: string) => {
       dispatch(loginSuccess(response.data));
     } catch (error) {
     
-    }
+    } }
 
 };
 

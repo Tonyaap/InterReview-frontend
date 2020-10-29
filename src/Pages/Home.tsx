@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {selectUser} from "../store/user/selectors"
 import { useSelector} from "react-redux"
 import { Line } from "react-chartjs-2";
@@ -6,8 +6,18 @@ import { Line } from "react-chartjs-2";
 export default function Home() {
 
 const user = useSelector(selectUser)
+const [loading, setLoading]=useState(true)
 
-const interviews = user.user?.Interviews.map((interview: any) => {
+useEffect(() => {
+if (user.user) {
+  setLoading(false) }
+}, [user.user])
+
+if (loading) {
+  return <div> Loading... </div>
+} 
+
+const interviews = user.user.Interviews.map((interview: any) => {
   return interview
 }) 
 
@@ -69,8 +79,6 @@ let aBodyLanguage = bodyLanguageSum/bodyLanguageScore.length
       <p>this is the home page of: {user.user?.name} </p>
        <div>
       <h1> HOMEPAGE </h1>
-
-      
 
       <div>
         <p> Number of interviews: {numberOfInterviews} </p>
