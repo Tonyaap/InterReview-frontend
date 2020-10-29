@@ -1,4 +1,6 @@
 // import { apiUrl } from "../../config/constants";
+import { User, Interview, Questions } from "../../types/types";
+
 import axios from "axios";
 import { selectToken } from "./selectors";
 
@@ -23,13 +25,12 @@ export const login = (email: string, password: string) => {
 
       dispatch(loginSuccess(response.data));
     } catch (error) {
-    
-    } }
-
+      console.log(error);
+    }
+  };
 };
 
 export const logOut = () => ({ type: LOG_OUT });
-
 
 export const signUp = (name: string, email: string, password: string) => {
   return async (dispatch: any, getState: any) => {
@@ -41,10 +42,8 @@ export const signUp = (name: string, email: string, password: string) => {
       });
 
       console.log(response);
-
-    
     } catch (error) {
-      if (error.response) {       
+      if (error.response) {
       } else {
       }
     }
@@ -120,7 +119,6 @@ export const sendForm = (
 //   return async (dispatch, getState) => {
 //     const token = selectToken(getState());
 
-
 const tokenStillValid = (userWithoutToken: any) => ({
   type: TOKEN_STILL_VALID,
   payload: userWithoutToken,
@@ -129,13 +127,12 @@ const tokenStillValid = (userWithoutToken: any) => ({
 export const getUserWithStoredToken = () => {
   return async (dispatch: any, getState: any) => {
     const token = selectToken(getState());
-    // console.log("WHAT IS localtoken?", localStorage.token)
     if (localStorage.token === null) return;
     try {
       const response = await axios.get(`http://localhost:8080/auth/me`, {
         headers: { Authorization: `Bearer ${localStorage.token}` },
       });
-      console.log( "WHAT IS RES DATA?", response.data)
+      console.log("WHAT IS RES DATA?", response.data);
       dispatch(tokenStillValid(response.data));
     } catch (error) {
       dispatch(logOut());

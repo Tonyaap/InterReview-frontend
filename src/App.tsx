@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
 import Home from "./Pages/Home";
@@ -7,15 +7,17 @@ import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
 import NavBar from "./Components/NavBar/NavBar";
 import Interviews from "../src/Pages/Interviews";
-import {useDispatch} from "react-redux"
-import {getUserWithStoredToken} from "./store/user/actions"
+import { useDispatch } from "react-redux";
+import { getUserWithStoredToken } from "./store/user/actions";
 
 function App() {
-
- const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log("does this useeffet work?");
+
     dispatch(getUserWithStoredToken());
+    console.log("does this dispatch");
   }, [dispatch]);
 
   return (
