@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import "./NavBar.css";
 import { logOut } from "../../store/user/actions";
 import { selectToken } from "../../store/user/selectors";
+import Logo from "../../logo/logo.png"
 
 export default function NavBar() {
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ export default function NavBar() {
   return (
     <div className="topnav">
       <ul className="topnav">
+          <img className="homelogo" src={Logo}/>
         <li>
           <NavLink style={{ color: "white" }} to="/Home">
             Home
