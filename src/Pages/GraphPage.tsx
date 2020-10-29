@@ -8,13 +8,20 @@ export default function GraphPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+      const timer = setTimeout(() => {
+
+  
     if (user.user.id) {
       setLoading(false);
+      
     }
+
+      }, 2000);
+    return () => clearTimeout(timer);
   }, [user.user.id]);
 
-  if (loading) {
-    return <div> Loading... </div>;
+  if (loading) { 
+    return  <div className="lds-roller"> <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>;
   }
 
   const interviews = user.user.interviews.map((interview: any) => {
