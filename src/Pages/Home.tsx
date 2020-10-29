@@ -70,6 +70,8 @@ let aBodyLanguage = bodyLanguageSum/bodyLanguageScore.length
        <div>
       <h1> HOMEPAGE </h1>
 
+      
+
       <div>
         <p> Number of interviews: {numberOfInterviews} </p>
         <p> Average Scores: </p>
@@ -91,8 +93,6 @@ let aBodyLanguage = bodyLanguageSum/bodyLanguageScore.length
       </div>
       <div className="chart-container" style={{ height: 100, width: 1000 }}>
         <canvas id="chart"></canvas> 
-
-       
         <Line 
           data={ {
             
