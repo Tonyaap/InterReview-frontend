@@ -4,17 +4,21 @@ import { NavLink } from "react-router-dom";
 import "./NavBar.css";
 import { logOut } from "../../store/user/actions";
 import { selectToken } from "../../store/user/selectors";
-import Logo from "../../logo/logo.png"
+import Logo from "../../logo/logo.png";
+import { useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 
 export default function NavBar() {
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
+  const history = useHistory();
 
   return (
     <div className="topnav">
       <ul className="topnav">
+
           <img className="homelogo" src={Logo} alt="logo" />
+
         <li>
           <NavLink style={{ color: "white" }} to="/Home">
             Home
@@ -52,9 +56,15 @@ export default function NavBar() {
               </NavLink>
             </li>
             <li style={{float: "right", marginRight: "50px" }}>
-              <Button onClick={() => dispatch(logOut())} color="secondary"
+              <Button color="secondary"
               variant="contained" fullWidth 
-              > logout </Button>
+                onClick={() => {
+                  dispatch(logOut());
+                  history.push("/Login");
+                }}
+              >
+                logout
+              </button>
             </li>
           </div>
         )}
