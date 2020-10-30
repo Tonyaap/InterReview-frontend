@@ -2,6 +2,19 @@
   text-align: center;
 }
 
+.About{
+  /* border: 5px solid rgb(38, 53, 154); */
+  font-size: 30px;
+  padding: 19px;
+  margin: 10px;
+  margin-left: 200px;
+  margin-right: 200px;
+}
+
+.pleaselogin{
+  font-size: 20px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
