@@ -6,6 +6,10 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import { Interview, Questions } from "../types/types";
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles({
   root: {
@@ -19,7 +23,6 @@ const useStyles = makeStyles({
     padding: 50,
     textAlign: "left",
     borderWidth: 2,
-    borderColor: "red,",
     borderStyle: "solid",
     margin: 80,
   },
@@ -29,7 +32,7 @@ const useStyles = makeStyles({
     transform: "scale(0.8)",
   },
   title: {
-    color: "black",
+    color: "#26359a",
     fontSize: 30,
     borderBottomColor: "grey",
     borderBottomWidth: 3,
@@ -50,14 +53,17 @@ const useStyles = makeStyles({
 export default function Interviews() {
   const user = useSelector(selectUser);
   const classes = useStyles();
+  
 
   const interviews = user.user.Interviews;
+
 
   return (
     <div className={classes.root}>
       {interviews ? (
         interviews.map((i: Interview) => {
           return (
+            
             <Card className={classes.card}>
               <CardContent>
                 <Typography
@@ -79,7 +85,19 @@ export default function Interviews() {
                 <Typography className={classes.pos} color="textSecondary">
                   preparationScore:{i.preparationScore}
                 </Typography>
-                {i.questions.map((q: Questions) => {
+               <div className={classes.root}>
+                   <Accordion>
+        <AccordionSummary
+          
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Button color="secondary"
+              variant="contained" >Show Questions</Button>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+             {i.questions.map((q: Questions) => {
                   return (
                     <div style={{ margin: 20 }}>
                       <p className={classes.question}> • {q.Question}</p>{" "}
@@ -87,6 +105,13 @@ export default function Interviews() {
                     </div>
                   );
                 })}
+           
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      </div>
+
+               
               </CardContent>
             </Card>
           );

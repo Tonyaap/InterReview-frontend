@@ -12,11 +12,13 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { login } from "../store/user/actions";
 import { useHistory } from "react-router-dom";
+import Snackbar from '@material-ui/core/Snackbar';
 
 export default function SignIn() {
   const classes = useStyles();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [open, setOpen] =useState(false)
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -30,9 +32,23 @@ export default function SignIn() {
 
     setEmail("");
     setPassword("");
+    handleClick()
 
     history.push("/Graph");
   }
+
+    const handleClose = (event: any , reason:any) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+    const handleClick = () => {
+    setOpen(true);
+  };
+
 
   return (
     <Container component="main" maxWidth="xs">
@@ -40,7 +56,7 @@ export default function SignIn() {
       <div className={classes.paper}>
         <Avatar className={classes.avatar}></Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Login
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
@@ -78,8 +94,21 @@ export default function SignIn() {
             color="primary"
             className={classes.submit}
           >
-            Sign In
+            Login
           </Button>
+                  <div>
+      <Snackbar
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        open={open}
+        autoHideDuration={3000}
+        onClose={handleClose}
+        message="Successfully Logged-In" 
+      />
+    </div>
+
           <Grid container>
             <Grid item>
               <Link href="#" variant="body2">

@@ -11,6 +11,8 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import {signUp} from "../store/user/actions"
+import Snackbar from '@material-ui/core/Snackbar';
+
 
 export default function SignUp() {
   const dispatch = useDispatch();
@@ -18,6 +20,7 @@ export default function SignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [open, setOpen] =useState(false)
   
   function submitForm(event: MouseEvent) {
     event.preventDefault();
@@ -27,7 +30,21 @@ export default function SignUp() {
     setEmail("");
     setPassword("");
     setName("");
+    handleClick()
   }
+
+   const handleClose = (event: any , reason:any) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+    const handleClick = () => {
+    setOpen(true);
+  };
+
 
   return (
     <Container component="main" maxWidth="xs">
@@ -91,6 +108,18 @@ export default function SignUp() {
           >
             Sign Up
           </Button>
+              <div>
+      <Snackbar
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        open={open}
+        autoHideDuration={3000}
+        onClose={handleClose}
+        message="Signup Successfull!" 
+      />
+    </div>
           <Grid container justify="flex-end">
             <Grid item>
               <Link href="#" variant="body2">
