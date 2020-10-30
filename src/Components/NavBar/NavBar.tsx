@@ -14,7 +14,7 @@ export default function NavBar() {
   return (
     <div className="topnav">
       <ul className="topnav">
-          <img className="homelogo" src={Logo}/>
+          <img className="homelogo" src={Logo} alt="logo" />
         <li>
           <NavLink style={{ color: "white" }} to="/Home">
             Home

@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
-import Home from "./Pages/GraphPage";
 import Form from "./Pages/Form";
 import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";

@@ -1,4 +1,4 @@
-import { User, fetchedUser, Interview, Questions } from "../../types/types";
+import { User } from "../../types/types";
 import { LOGIN_SUCCESS, LOG_OUT, TOKEN_STILL_VALID } from "../user/actions";
 
 export type LoginSuccess = {
