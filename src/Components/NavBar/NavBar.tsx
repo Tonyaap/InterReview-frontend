@@ -6,6 +6,7 @@ import { logOut } from "../../store/user/actions";
 import { selectToken } from "../../store/user/selectors";
 import Logo from "../../logo/logo.png";
 import { useHistory } from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
 export default function NavBar() {
   const dispatch = useDispatch();
@@ -52,8 +53,9 @@ export default function NavBar() {
                 Interview
               </NavLink>
             </li>
-            <li>
-              <button
+            <li style={{float: "right", marginRight: "50px" }}>
+              <Button color="secondary"
+              variant="contained" fullWidth 
                 onClick={() => {
                   dispatch(logOut());
                   history.push("/Login");
