@@ -13,12 +13,14 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { login } from "../store/user/actions";
+import { useHistory } from "react-router-dom";
 
 export default function SignIn() {
   const classes = useStyles();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+  const history = useHistory();
 
   console.log("Email Password", email, password);
 
@@ -30,6 +32,8 @@ export default function SignIn() {
 
     setEmail("");
     setPassword("");
+
+    history.push("/Graph");
   }
 
   return (
