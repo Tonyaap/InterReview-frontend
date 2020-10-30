@@ -1,5 +1,5 @@
-import { User } from "../../types/types";
-import { LOGIN_SUCCESS, LOG_OUT, TOKEN_STILL_VALID } from "../user/actions";
+import { Interview, User } from "../../types/types";
+import { CREATE_REVIEW, LOGIN_SUCCESS, LOG_OUT, TOKEN_STILL_VALID } from "../user/actions";
 
 export type LoginSuccess = {
   type: typeof LOGIN_SUCCESS;
@@ -15,7 +15,12 @@ export type tokenStillValid = {
   payload: User;
 };
 
-export type UserActionTypes = LoginSuccess | LOGOUTsuccess | tokenStillValid;
+export type createReview = {
+  type: typeof CREATE_REVIEW;
+  payload: Interview
+}
+
+export type UserActionTypes = LoginSuccess | LOGOUTsuccess | tokenStillValid | createReview;
 
 export type storeState = { user: User , token:string  }
 

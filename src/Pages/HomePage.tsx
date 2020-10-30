@@ -9,7 +9,7 @@ export default function HomePage() {
          <br></br>
            <br></br>
        
-      <img src={Logo} alt="logo"/>
+      <img style={{height:300, width:"auto"}} src={Logo} alt="logo"/>
        <br></br>
           <br></br>
              <br></br>

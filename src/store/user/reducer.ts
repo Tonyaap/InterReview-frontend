@@ -1,8 +1,10 @@
-import { LOGIN_SUCCESS, LOG_OUT, TOKEN_STILL_VALID } from "../user/actions";
+import { LOGIN_SUCCESS, LOG_OUT, TOKEN_STILL_VALID, CREATE_REVIEW } from "../user/actions";
 import { User } from "../../types/types";
 import {
   UserActionTypes,
 } from "./types";
+import Interviews from "../../Pages/Interviews";
+
 
 const initialState: User = {
   token: "",
@@ -55,6 +57,11 @@ export default (state = initialState, action: UserActionTypes) => {
     case LOG_OUT:
       localStorage.removeItem("token");
       return { ...initialState, token: null };
+
+   case CREATE_REVIEW:
+      return{
+        ...state, Interviews: [...state.user.Interviews, action.payload]
+        }
 
     case TOKEN_STILL_VALID:
       return {

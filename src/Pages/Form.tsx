@@ -12,11 +12,7 @@ import { sendForm } from "../store/user/actions";
 import { selectUser } from "../store/user/selectors";
 import Snackbar from '@material-ui/core/Snackbar';
 
-
-
 export default function Form() {
-
-
 
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
@@ -27,7 +23,6 @@ export default function Form() {
   const [answer4, setAwnser4] = useState("");
   const [answer5, setAwnser5] = useState("");
   const [answer6, setAwnser6] = useState("");
-
   const [nervousScore, setNervousScore] = useState(0);
   const [rapportScore, setRapportScore] = useState(0);
   const [technicalScore, setTechnicalScore] = useState(0);
@@ -46,6 +41,7 @@ export default function Form() {
   };
 
     const handleClick = () => {
+      
     setOpen(true);
   };
 
@@ -69,14 +65,17 @@ export default function Form() {
       Answer: `${answer6}`,
     },
   ]);
-  console.log(answer1);
+  console.log("answer1", answer1);
+  console.log("Answers",answers)
 
   function clickHandler(e: MouseEvent) {
-    
+     
+ 
     e.preventDefault();
-    dispatch(
+     setAnswers(answers)
+    dispatch (
       
-      sendForm(
+      sendForm( 
         user.user.id,
         answer1,
         nervousScore,
@@ -87,6 +86,8 @@ export default function Form() {
         answers
       )
     );
+       
+    
     handleClick()
   }
 

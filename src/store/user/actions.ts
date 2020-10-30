@@ -10,6 +10,7 @@ import { fetchedUser, User } from "../../types/types";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const TOKEN_STILL_VALID = "TOKEN_STILL_VALID";
 export const LOG_OUT = "LOG_OUT";
+export const CREATE_REVIEW = "CREATE_REVIEW"
 
 const loginSuccess = (userWithToken: User) => {
   console.log("USER WITH TOKEN",userWithToken)
@@ -65,6 +66,16 @@ export const sendForm = (
   questions: any
 ) => {
 
+//   const loginSuccess = (userWithToken: User) => {
+//   console.log("USER WITH TOKEN",userWithToken)
+//   return {
+//     type: LOGIN_SUCCESS,
+//     payload: userWithToken,
+//   };
+// };
+
+  const createdReview = (review: any) => ({ type: CREATE_REVIEW, payload: review })
+
   return async (dispatch: Dispatch, getState: storeState) => {
     try {
       const response = await axios.post(
@@ -81,6 +92,8 @@ export const sendForm = (
         }
       );
       console.log("res.data", response.data);
+        dispatch(createdReview(response.data))
+
     } catch (error) {}
   };
 };
