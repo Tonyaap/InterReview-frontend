@@ -95,7 +95,7 @@ These were the goals we wanted to achieve :
 
 ---
 
-[Go to datamodel]()
+[Go to datamodel](https://dbdiagram.io/d/5f96a8143a78976d7b79291f)
 
 ---
 
