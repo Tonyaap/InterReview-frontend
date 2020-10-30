@@ -84,16 +84,16 @@ export default function GraphPage() {
 
   return (
     <div>
-      <p>this is the home page of: {user.user.name} </p>
       <div>
-        <h1> HOMEPAGE </h1>
+        <h1> Your Stats: </h1>
 
         <div>
-          <p> Number of interviews: {numberOfInterviews} </p>
+          <h3> Number of interviews: {numberOfInterviews} </h3>
      
         </div>
-
-        <div className="barchart" style={{ height: 100, width: 1000 }}>
+        <div className="container">
+          <div className="row">
+        <div className="barchart" style={{ height: 250, width: 1000 }}>
           <canvas id="chart"></canvas>
           <Bar
             data={{
@@ -102,39 +102,33 @@ export default function GraphPage() {
                 {
                   label: "Nervous",
                   data: [aNervous],
-                  backgroundColor: [
-                    "red",
-                  ],
-                  borderColor: "red",
-                  borderWidth: 10,
+                  backgroundColor: "#F94144"
+                  ,
+                
                 },
                 {
                   label: "Rapport",
                   data: [aRapport],
-                  backgroundColor: "black",
-                  borderWidth: 10,
-                  borderColor: "black",
+                  backgroundColor: "#F8961E",
+              
                 },
                 {
                   label: "Technical",
                   data: [aTechnical],
-                  backgroundColor: "blue",
-                  borderWidth: 10,
-                  borderColor: "blue",
+                  backgroundColor: "#90BE6D",
+               
                 },
                 {
                   label: "Preparation",
                   data: [aPreparation],
-                  backgroundColor: "green",
-                  borderWidth: 10,
-                  borderColor: "green",
+                  backgroundColor: "#4D908E",
+                 
                 },
                 {
                   label: "Body-Language",
                   data: [aBodyLanguage],
-                  backgroundColor: "yellow",
-                  borderWidth: 10,
-                  borderColor: "yellow",
+                  backgroundColor: "#277DA1",
+                
                 },
               ],
             }}
@@ -155,7 +149,7 @@ export default function GraphPage() {
           />
         </div> 
 
-        <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br>
+        
 
         <div className="linechart" style={{ height: 100, width: 1000 }}>
           <canvas id="chart"></canvas>
@@ -166,15 +160,8 @@ export default function GraphPage() {
                 {
                   label: "Nervous",
                   data: [...nervousScore],
-                  backgroundColor: [
-                    "rgba(255, 99, 132, 0.2)",
-                    "rgba(54, 162, 235, 0.2)",
-                    "rgba(255, 206, 86, 0.2)",
-                    "rgba(75, 192, 192, 0.2)",
-                    "rgba(153, 102, 255, 0.2)",
-                    "rgba(255, 159, 64, 0.2)",
-                  ],
-                  borderColor: "red",
+                
+                  borderColor: "#F94144",
                   borderWidth: 10,
                 },
                 {
@@ -182,28 +169,28 @@ export default function GraphPage() {
                   data: [...rapportScore],
                   backgroundColor: "",
                   borderWidth: 10,
-                  borderColor: "black",
+                  borderColor: "#F8961E",
                 },
                 {
                   label: "Technical",
                   data: [...technicalScore],
                   backgroundColor: "",
                   borderWidth: 10,
-                  borderColor: "blue",
+                  borderColor: "#90BE6D",
                 },
                 {
                   label: "Preparation",
                   data: [...preparationScore],
                   backgroundColor: "",
                   borderWidth: 10,
-                  borderColor: "green",
+                  borderColor: "#4D908E",
                 },
                 {
                   label: "Body-Language",
                   data: [...bodyLanguageScore],
                   backgroundColor: "",
                   borderWidth: 10,
-                  borderColor: "yellow",
+                  borderColor: "#277DA1",
                 },
               ],
             }}
@@ -222,6 +209,8 @@ export default function GraphPage() {
               },
             }}
           />
+        </div>
+        </div>
         </div>
       </div>
     </div>
