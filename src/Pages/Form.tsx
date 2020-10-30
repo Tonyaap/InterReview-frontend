@@ -10,8 +10,14 @@ import { Slider } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { sendForm } from "../store/user/actions";
 import { selectUser } from "../store/user/selectors";
+import Snackbar from '@material-ui/core/Snackbar';
+
+
 
 export default function Form() {
+
+
+
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const classes = useStyles();
@@ -27,6 +33,23 @@ export default function Form() {
   const [technicalScore, setTechnicalScore] = useState(0);
   const [preparationScore, setPreparationScore] = useState(0);
   const [bodyLanguageScore, setBodyLanguageScore] = useState(0);
+  const [open, setOpen] =useState(false)
+
+
+
+  const handleClose = (event: any , reason:any) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+    const handleClick = () => {
+    setOpen(true);
+  };
+
+
 
   const [answers, setAnswers] = useState([
     { Question: "Company Name", Answer: `${answer1}` },
@@ -49,8 +72,10 @@ export default function Form() {
   console.log(answer1);
 
   function clickHandler(e: MouseEvent) {
+    
     e.preventDefault();
     dispatch(
+      
       sendForm(
         user.user.id,
         answer1,
@@ -62,6 +87,7 @@ export default function Form() {
         answers
       )
     );
+    handleClick()
   }
 
   return (
@@ -267,6 +293,21 @@ export default function Form() {
           >
             Submit review{" "}
           </Button>
+
+
+            <div>
+      <Snackbar
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        open={open}
+        autoHideDuration={3000}
+        onClose={handleClose}
+        message="InterReview Submitted" 
+      />
+    </div>
+
         </form>
       </div>
       <Box mt={8}></Box>
