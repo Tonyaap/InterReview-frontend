@@ -16,3 +16,8 @@ export type tokenStillValid = {
 };
 
 export type UserActionTypes = LoginSuccess | LOGOUTsuccess | tokenStillValid;
+
+export type storeState = { user: User , token:string  }
+
+export type getState = () => storeState 
+

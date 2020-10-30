@@ -64,7 +64,7 @@ export default function NavBar() {
                 }}
               >
                 logout
-              </button>
+              </Button>
             </li>
           </div>
         )}

@@ -28,6 +28,6 @@ export type Interview = {
 };
 
 export type Questions = {
-  question: string;
-  answer: string;
+  Question: string;
+  Answer: string;
 };

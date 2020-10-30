@@ -1,14 +1,18 @@
 // import { apiUrl } from "../../config/constants";
 // import { User, Interview, Questions } from "../../types/types";
-
+import {Dispatch} from "redux"
 import axios from "axios";
 import { selectToken } from "./selectors";
+import { getState, storeState } from "./types";
+import { fetchedUser, User } from "../../types/types";
+
 
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const TOKEN_STILL_VALID = "TOKEN_STILL_VALID";
 export const LOG_OUT = "LOG_OUT";
 
-const loginSuccess = (userWithToken: any) => {
+const loginSuccess = (userWithToken: User) => {
+  console.log("USER WITH TOKEN",userWithToken)
   return {
     type: LOGIN_SUCCESS,
     payload: userWithToken,
@@ -16,7 +20,7 @@ const loginSuccess = (userWithToken: any) => {
 };
 
 export const login = (email: string, password: string) => {
-  return async (dispatch: any, getState: any) => {
+  return async (dispatch: Dispatch, getState: storeState) => {
     try {
       const response = await axios.post(`http://localhost:8080/auth/login`, {
         email,
@@ -33,7 +37,7 @@ export const login = (email: string, password: string) => {
 export const logOut = () => ({ type: LOG_OUT });
 
 export const signUp = (name: string, email: string, password: string) => {
-  return async (dispatch: any, getState: any) => {
+  return async (dispatch: Dispatch, getState: storeState) => {
     try {
       const response = await axios.post(`http://localhost:8080/auth/signup`, {
         name,
@@ -60,16 +64,8 @@ export const sendForm = (
   bodylanguageScore: number,
   questions: any
 ) => {
-  console.log("userId", userId);
-  console.log("name", name);
-  console.log("nervousScore", nervousScore);
-  console.log("rapportScore", rapportScore);
-  console.log("technicalScore", technicalScore);
-  console.log("preparationScore", preparationScore);
-  console.log("bodylanguageScore", bodylanguageScore);
-  console.log("questions", questions);
 
-  return async (dispatch: any, getState: any) => {
+  return async (dispatch: Dispatch, getState: storeState) => {
     try {
       const response = await axios.post(
         `http://localhost:8080/users/interview`,
@@ -89,13 +85,15 @@ export const sendForm = (
   };
 };
 
-const tokenStillValid = (userWithoutToken: any) => ({
+ 
+
+const tokenStillValid = (userWithoutToken: fetchedUser) => (  {
   type: TOKEN_STILL_VALID,
   payload: userWithoutToken,
-});
+}  );
 
 export const getUserWithStoredToken = () => {
-  return async (dispatch: any, getState: any) => {
+  return async (dispatch: Dispatch, getState: getState) => {
     const token = selectToken(getState());
     if (localStorage.token === null) return;
     try {

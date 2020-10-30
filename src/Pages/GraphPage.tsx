@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { selectUser } from "../store/user/selectors";
 import { useSelector } from "react-redux";
 import { Bar, Line } from "react-chartjs-2";
+import { Interview } from "../types/types";
 
 export default function GraphPage() {
   const user = useSelector(selectUser);
@@ -24,17 +25,17 @@ export default function GraphPage() {
     return  <div className="lds-roller"> <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>;
   }
 
-  const interviews = user.user.interviews.map((interview: any) => {
+  const interviews = user.user.Interviews.map((interview: Interview) => {
     return interview;
   });
 
-  const interviewNames = interviews.map((interview: any) => {
+  const interviewNames = interviews.map((interview: Interview) => {
     return `${interview.name}`;
   });
 
   let numberOfInterviews = interviews.length;
 
-  const nervousScore = interviews.map((interview: any) => {
+  const nervousScore = interviews.map((interview: Interview) => {
     return parseInt(interview.nervousScore);
   });
   let nervousSum = nervousScore.reduce((a: number, b: number) => {
@@ -42,7 +43,7 @@ export default function GraphPage() {
   }, 0);
   let aNervous = nervousSum / nervousScore.length;
 
-  const rapportScore = interviews.map((interview: any) => {
+  const rapportScore = interviews.map((interview: Interview) => {
     return parseInt(interview.rapportScore);
   });
 
@@ -52,7 +53,7 @@ export default function GraphPage() {
 
   let aRapport = rapportSum / rapportScore.length;
 
-  const technicalScore = interviews.map((interview: any) => {
+  const technicalScore = interviews.map((interview: Interview) => {
     return parseInt(interview.technicalScore);
   });
 
@@ -62,7 +63,7 @@ export default function GraphPage() {
 
   let aTechnical = technicalSum / technicalScore.length;
 
-  const preparationScore = interviews.map((interview: any) => {
+  const preparationScore = interviews.map((interview: Interview) => {
     return parseInt(interview.preparationScore);
   });
 
@@ -72,7 +73,7 @@ export default function GraphPage() {
 
   let aPreparation = preparationSum / preparationScore.length;
 
-  const bodyLanguageScore = interviews.map((interview: any) => {
+  const bodyLanguageScore = interviews.map((interview: Interview) => {
     return parseInt(interview.bodylanguageScore);
   });
 

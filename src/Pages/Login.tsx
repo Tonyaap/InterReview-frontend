@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, MouseEvent } from "react";
 import { useDispatch} from "react-redux";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -22,7 +22,7 @@ export default function SignIn() {
 
   console.log("Email Password", email, password);
 
-  function submitForm(e: any) {
+  function submitForm(e: MouseEvent) {
     console.log("Form Submitted");
     e.preventDefault();
 

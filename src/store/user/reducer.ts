@@ -24,8 +24,8 @@ const initialState: User = {
         preparationScore: "",
         questions: [
           {
-            question: "",
-            answer: "",
+            Question: "",
+            Answer: "",
           },
         ],
         rapportScore: "",
@@ -48,7 +48,7 @@ export default (state = initialState, action: UserActionTypes) => {
           email: action.payload.user.email,
           createdAt: action.payload.user.createdAt,
           updatedAt: action.payload.user.updatedAt,
-          interviews: action.payload.user.Interviews,
+          Interviews: action.payload.user.Interviews,
         },
       };
 
@@ -65,7 +65,7 @@ export default (state = initialState, action: UserActionTypes) => {
           email: action.payload.user.email,
           createdAt: action.payload.user.createdAt,
           updatedAt: action.payload.user.updatedAt,
-          interviews: action.payload.user.Interviews,
+          Interviews: action.payload.user.Interviews,
         },
       };
     default:

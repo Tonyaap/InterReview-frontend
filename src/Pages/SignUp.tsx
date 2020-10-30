@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {MouseEvent, useState} from "react";
 import {useDispatch} from "react-redux";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -19,7 +19,7 @@ export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   
-  function submitForm(event: any) {
+  function submitForm(event: MouseEvent) {
     event.preventDefault();
 
     dispatch(signUp(name, email, password));

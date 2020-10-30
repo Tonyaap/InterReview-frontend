@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
+import { Interview, Questions } from "../types/types";
 
 const useStyles = makeStyles({
   root: {
@@ -50,12 +51,12 @@ export default function Interviews() {
   const user = useSelector(selectUser);
   const classes = useStyles();
 
-  const interviews = user.user.interviews;
+  const interviews = user.user.Interviews;
 
   return (
     <div className={classes.root}>
       {interviews ? (
-        interviews.map((i: any) => {
+        interviews.map((i: Interview) => {
           return (
             <Card className={classes.card}>
               <CardContent>
@@ -78,7 +79,7 @@ export default function Interviews() {
                 <Typography className={classes.pos} color="textSecondary">
                   preparationScore:{i.preparationScore}
                 </Typography>
-                {i.questions.map((q: any) => {
+                {i.questions.map((q: Questions) => {
                   return (
                     <div style={{ margin: 20 }}>
                       <p className={classes.question}> • {q.Question}</p>{" "}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { MouseEvent, useState } from "react";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -48,7 +48,7 @@ export default function Form() {
   ]);
   console.log(answer1);
 
-  function clickHandler(e: any) {
+  function clickHandler(e: MouseEvent) {
     e.preventDefault();
     dispatch(
       sendForm(
