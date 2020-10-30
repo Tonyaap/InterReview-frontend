@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
@@ -30,7 +28,7 @@ export default function Form() {
   const [preparationScore, setPreparationScore] = useState(0);
   const [bodyLanguageScore, setBodyLanguageScore] = useState(0);
 
-  const [answers, setAwnsers] = useState([
+  const [answers, setAnswers] = useState([
     { Question: "Company Name", Answer: `${answer1}` },
     {
       Question: " What was the most difficult question they asked?",

@@ -9,7 +9,7 @@ export default function HomePage() {
          <br></br>
            <br></br>
        
-      <img src={Logo}/>
+      <img src={Logo} alt="logo"/>
        <br></br>
           <br></br>
              <br></br>
