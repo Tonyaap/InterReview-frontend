@@ -5,6 +5,7 @@ import "./NavBar.css";
 import { logOut } from "../../store/user/actions";
 import { selectToken } from "../../store/user/selectors";
 import Logo from "../../logo/logo.png"
+import Button from "@material-ui/core/Button";
 
 export default function NavBar() {
   const dispatch = useDispatch();
@@ -50,8 +51,10 @@ export default function NavBar() {
                 Interview
               </NavLink>
             </li>
-            <li>
-              <button onClick={() => dispatch(logOut())}> logout </button>
+            <li style={{float: "right", marginRight: "50px" }}>
+              <Button onClick={() => dispatch(logOut())} color="secondary"
+              variant="contained" fullWidth 
+              > logout </Button>
             </li>
           </div>
         )}
