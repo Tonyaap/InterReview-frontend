@@ -10,10 +10,9 @@ import { Slider } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { sendForm } from "../store/user/actions";
 import { selectUser } from "../store/user/selectors";
-import Snackbar from '@material-ui/core/Snackbar';
+import Snackbar from "@material-ui/core/Snackbar";
 
 export default function Form() {
-
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const classes = useStyles();
@@ -28,26 +27,21 @@ export default function Form() {
   const [technicalScore, setTechnicalScore] = useState(0);
   const [preparationScore, setPreparationScore] = useState(0);
   const [bodyLanguageScore, setBodyLanguageScore] = useState(0);
-  const [open, setOpen] =useState(false)
+  const [open, setOpen] = useState(false);
 
-
-
-  const handleClose = (event: any , reason:any) => {
-    if (reason === 'clickaway') {
+  const handleClose = (event: any, reason: any) => {
+    if (reason === "clickaway") {
       return;
     }
 
     setOpen(false);
   };
 
-    const handleClick = () => {
-      
+  const handleClick = () => {
     setOpen(true);
   };
 
-
-
-  const [answers, setAnswers] = useState([
+  const answers = [
     { Question: "Company Name", Answer: `${answer1}` },
     {
       Question: " What was the most difficult question they asked?",
@@ -64,18 +58,13 @@ export default function Form() {
         "What can i do differently next time to improve my performance?",
       Answer: `${answer6}`,
     },
-  ]);
-  console.log("answer1", answer1);
-  console.log("Answers",answers)
+  ];
+  console.log("Answers", answers);
 
   function clickHandler(e: MouseEvent) {
-     
- 
     e.preventDefault();
-     setAnswers(answers)
-    dispatch (
-      
-      sendForm( 
+    dispatch(
+      sendForm(
         user.user.id,
         answer1,
         nervousScore,
@@ -86,9 +75,8 @@ export default function Form() {
         answers
       )
     );
-       
-    
-    handleClick()
+
+    handleClick();
   }
 
   return (
@@ -294,21 +282,18 @@ export default function Form() {
           >
             Submit review{" "}
           </Button>
-
-
-            <div>
-      <Snackbar
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
-        open={open}
-        autoHideDuration={3000}
-        onClose={handleClose}
-        message="InterReview Submitted" 
-      />
-    </div>
-
+          <div>
+            <Snackbar
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              open={open}
+              autoHideDuration={3000}
+              onClose={handleClose}
+              message="InterReview Submitted"
+            />
+          </div>
         </form>
       </div>
       <Box mt={8}></Box>
