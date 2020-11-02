@@ -24,7 +24,7 @@ By scoring yourself each interview you should (hopefully) see some improvement o
 
 ## APP DEMO
 
-GIF OF USING THE APP
+![InterReview](https://github.com/DannyS-stack/InterReview-frontend/blob/development/src/logo/ezgif.com-gif-maker%20(1).gif)
 
 ---
 
